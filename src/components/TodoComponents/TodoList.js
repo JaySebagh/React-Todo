@@ -4,10 +4,9 @@ import React from 'react';
 class TodoList extends React.Component {
   constructor(props){
     super(props);
-
     this.state = {
       input: "",
-      list: []
+      list: [],
     }
   }
 
@@ -22,7 +21,7 @@ class TodoList extends React.Component {
     array.push(event);
     this.setState({
       list: array,
-      input: ""
+      input: "",
     })
   }
 
@@ -30,7 +29,8 @@ class TodoList extends React.Component {
     return (
       <div>
         <div>
-          {this.state.list.map( (event) => <p>{event}</p>)}
+          {this.state.list.map( (event) => <p>{event}</p>
+          )}
         </div>
 
         <input
