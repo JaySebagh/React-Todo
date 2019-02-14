@@ -1,12 +1,12 @@
 import React from 'react';
-import Todos from './components/TodoComponents/TodoList'
+import TodoList from './components/TodoComponents/TodoList'
 import TodoForm from './components/TodoComponents/TodoForm'
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: [{ task: "", id: Date.now(), completed: false }],
+      todoList: [{ task: "", id: Date.now(), completed: false }],
       task: ""
     };
   }
@@ -17,16 +17,16 @@ class App extends React.Component {
 
   handleAddTodoSubmit = e => {
     e.preventDefault();
-    const todos = this.state.todos.slice();
-    todos.push({ task: this.state.task, id: Date.now(), completed: false });
-    this.setState({ todos: todos, task: "" });
+    const todoList = this.state.todoList.slice();
+    todoList.push({ task: this.state.task, id: Date.now(), completed: false });
+    this.setState({ todoList: todoList, task: "" });
   };
 
   render() {
     return (
       <div className="App">
         <h1>Todo List: MVP</h1>
-        <Todos todos={this.state.todos} />
+        <TodoList todoList={this.state.todoList} />
         <TodoForm
           handleAddTodo={this.handleAddTodoSubmit}
           handleTask={this.handleTaskChange}
