@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
 
-class TodoForm extends React.Component {
-    render() {
-        return (
-          <div>test</div>
-        );
-      }
-    }
+const TodoForm = props => {
+  return (
+    <form>
+      <input placeholder="task" onChange={props.handleTask} />
+      <button onClick={props.handleAddTodo}>Add Todo </button>
+    </form>
+  );
+};
 
 export default TodoForm;
