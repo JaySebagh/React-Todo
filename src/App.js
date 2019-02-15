@@ -17,19 +17,43 @@ class App extends React.Component {
 
   handleAddTodoSubmit = e => {
     e.preventDefault();
-    const todoList = this.state.todoList.slice();
-    todoList.push({ task: this.state.task, id: Date.now(), completed: false });
-    this.setState({ todoList: todoList, task: "" });
+    const todoListCopy = this.state.todoList.slice();
+    todoListCopy.push({ task: this.state.task, id: Date.now(), completed: false });
+    this.setState({ todoList: todoListCopy, task: "" });
   };
+
+  handleComplete = id => {
+    const todoListCopy = this.state.todoList.slice();
+    for (let i = 0; i < this.state.todoList.length; i++) {
+      if (this.state.todoList[i].id === id) {
+        todoListCopy[i].completed = !todoListCopy[i].completed; 
+      }
+    }
+    this.setState({ todoList: todoListCopy, task: "" });
+  }
+
+  clearCompleted = e => {
+    e.preventDefault();
+    // get a copy of Todos
+    const todoListCopy = this.state.todoList.slice();
+    // filter out completed todos
+    let copiedList = todoListCopy.filter(todo => !todo.completed);
+    // setState
+    this.setState({ todoList: copiedList});
+  }
 
   render() {
     return (
       <div className="App">
         <h1>Todo List: MVP</h1>
-        <TodoList todoList={this.state.todoList} />
+        <TodoList
+        todoList={this.state.todoList}
+        handleComplete={this.handleComplete}
+        />
         <TodoForm
           handleAddTodo={this.handleAddTodoSubmit}
           handleTask={this.handleTaskChange}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
